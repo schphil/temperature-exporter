@@ -10,8 +10,7 @@ use error::Error;
 pub mod error;
 
 async fn read_temperature_sensor() -> Result<String, Error> {
-    // let resp = reqwest::get("http://192.168.178.200")
-    let resp = reqwest::get("http://home.crsh.cc:4680")
+    let resp = reqwest::get("http://192.168.178.200")
         .await?
         .json::<HashMap<String, f64>>()
         .await?;
