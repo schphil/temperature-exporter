@@ -1,8 +1,9 @@
 use env_logger::Env;
 use std::collections::HashMap;
-use tokio::net::{TcpListener, TcpStream};
-use tokio::io::AsyncWriteExt;
-use tokio::io::AsyncReadExt;
+use tokio::{
+    io::{AsyncReadExt, AsyncWriteExt},
+    net::{TcpListener, TcpStream},
+};
 
 use error::Error;
 
@@ -32,7 +33,6 @@ async fn handle_connection(mut stream: TcpStream) {
     );
 
     stream.write(response.as_bytes());
-
 }
 
 #[tokio::main]
