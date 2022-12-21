@@ -1,4 +1,5 @@
 use thiserror::Error;
+use warp::reject::Reject;
 
 #[derive(Debug, Error)]
 pub enum Error {
@@ -8,4 +9,8 @@ pub enum Error {
     ReqwestError(#[from] reqwest::Error),
     #[error("Std Error")]
     StdError(#[from] std::io::Error),
+    #[error("HTTP Error")]
+    Http(#[from] warp::http::Error),
 }
+
+impl Reject for Error {}
