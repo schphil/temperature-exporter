@@ -41,7 +41,7 @@ async fn main() -> Result<(), Error> {
 
             async move {
                 let metric = read_temperature_sensor().await.unwrap();
-                
+
                 let response = http::Response::builder()
                     .status(200)
                     .header(CONTENT_TYPE, "text/html")
