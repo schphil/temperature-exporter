@@ -12,11 +12,11 @@ use error::Error;
 pub mod error;
 
 async fn read_temperature_sensor() -> Result<String, Error> {
-    let resp = reqwest::get("http://192.168.178.200")
+    let temp_ip = std::env::var("TEMP_IP").unwrap();
+    let resp = reqwest::get(temp_ip)
         .await?
         .json::<HashMap<String, f64>>()
         .await?;
-    println!("{:#?}", resp);
 
     Ok(format!("temperature {}\n", resp.get("temperature").unwrap()))
 }
