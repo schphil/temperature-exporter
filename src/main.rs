@@ -13,10 +13,7 @@ pub mod error;
 
 async fn read_temperature_sensor() -> Result<String, Error> {
     let temp_ip = std::env::var("TEMP_IP").unwrap();
-    let resp = reqwest::get(temp_ip)
-        .await?
-        .json::<HashMap<String, f64>>()
-        .await?;
+    let resp = reqwest::get(temp_ip).await?.json::<HashMap<String, f64>>().await?;
 
     Ok(format!("temperature {}\n", resp.get("temperature").unwrap()))
 }
